@@ -3,12 +3,13 @@ loaderVersion="[47,)"
 license="MIT"
 [[mods]]
 modId="crazy_capacity_bridge"
-version="0.1.1"
+version="0.2.1"
 displayName="CrazyAE Big Crafting Capacity"
 authors="syarukasu"
 displayURL="https://github.com/syarukasu/crazy-ae-big-crafting-capacity"
 issueTrackerURL="https://github.com/syarukasu/crazy-ae-big-crafting-capacity/issues"
-description='''Exact BigInteger capacity accounting for the CrazyAE Crafting Units Combiner.'''
+description='''Adds an upgraded BigInteger Crafting Units Combiner for CrazyAE and ACO, with exact crafting-storage capacity and a dedicated creative tab.
+CrazyAEとACO向けの上位BigIntegerクラフトユニット統合器を追加。正確なストレージ容量と専用クリエイティブタブに対応。'''
 [[dependencies.crazy_capacity_bridge]]
 modId="forge"
 mandatory=true

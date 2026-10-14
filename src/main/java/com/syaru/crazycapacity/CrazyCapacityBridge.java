@@ -11,6 +11,7 @@ public final class CrazyCapacityBridge {
     private static final AtomicLong CONFIG_REVISION = new AtomicLong();
 
     public CrazyCapacityBridge() {
+        BridgeContent.register(net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus());
         for (String id : java.util.List.of("advanced_quantum_engineering", "ae2_crafting_optimizer", "insaneae")) {
             ModList.get().getModContainerById(id).ifPresent(container -> {
                 if (container instanceof FMLModContainer javaMod) {

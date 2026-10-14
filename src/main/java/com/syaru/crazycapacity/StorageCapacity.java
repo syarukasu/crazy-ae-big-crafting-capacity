@@ -51,7 +51,17 @@ public final class StorageCapacity {
         ICraftingUnitType type = TileCraftingUnitsCombiner.unitTypeOf(stack);
         if (type == null) return BigInteger.ZERO;
         BigInteger capacity = exact(type);
-        return capacity != null ? capacity : BigInteger.valueOf(Math.max(0L, type.getStorageBytes()));
+        if (capacity != null) return capacity;
+        // An addon may expose exact bytes on its block entity, not its unit enum.
+        if (stack.getItem() instanceof BlockItem item && item.getBlock() instanceof EntityBlock block
+                && !(item.getBlock() instanceof dev.beecube31.crazyae2.common.block.crafting.BlockCraftingUnitsCombiner)) {
+            var entity = block.newBlockEntity(BlockPos.ZERO, item.getBlock().defaultBlockState());
+            if (entity != null) {
+                BigInteger exactEntity = exact(entity);
+                if (exactEntity != null) return exactEntity;
+            }
+        }
+        return BigInteger.valueOf(Math.max(0L, type.getStorageBytes()));
     }
 
     public static BigInteger exactContribution(CraftingBlockEntity entity) {

@@ -1,48 +1,74 @@
 # CrazyAE Big Crafting Capacity
 
-A small Forge 1.20.1 compatibility addon for the **CrazyAE ME Crafting Units Combiner** and **ACO's public BigInteger API**.
+## 日本語
+
+CrazyAEのクラフトストレージを、ACOのBigInteger APIで正確に扱うためのForge 1.20.1アドオンです。0.2.1では上位版の **BigInteger クラフトユニット統合器** と専用クリエイティブタブを提供します。
+
+### 主な機能
+
+- 挿入したクラフトストレージの容量と収納個数をBigIntegerで合算します。
+- long上限を超える容量も保持し、ACOの計画をCPUの実容量で判定します。
+- 新しい統合器の画面では、容量を指数表記と省略なしの数値で表示します。
+- 専用の **BigInteger クラフト** タブから上位統合器を取り出せます。
+- 独自の搬入出速度制限や別のクラフト計算器は追加しません。クラフト実行は既存のAE2・ACO・CPU側の処理を使用します。
+
+### 上位統合器の作成
+
+中央にCrazyAEの元のCombiner、上下左右にAE2シンギュラリティ、四隅にクォーツガラスを配置します。
+
+ブロックID: `crazy_capacity_bridge:big_integer_combiner`
+
+既存のCombinerは自動で置き換わりません。旧ブロックからクラフトストレージを取り出し、新しい統合器に入れてください。容量を無制限に増やす機能ではなく、挿入したストレージの実容量を使用します。
+
+### 導入条件
+
+**必須アドオンは[ACO](https://www.curseforge.com/minecraft/mc-mods/ae2-crafting-optimizer)と[CrazyAE](https://www.curseforge.com/minecraft/mc-mods/crazyae)の2つです。** それぞれが要求するAE2などの前提MODも導入してください。InsaneAE・AQEは任意です。
+
+Forge 1.20.1 / Java 17。対象構成はCrazyAE 1.0、ACO 2.0 refs.8または互換版、AE2 15.4.10、Forge 47.4.18以降です。サーバーとクライアントに同じバージョンのJARを導入してください。
+
+**Alpha版です。** 上位統合器・専用タブは0.2.1の機能です。既存Combinerの容量互換機能を提供する0.1.1には含まれません。
 
 ## English
 
-- Adds up the capacity of inserted crafting-storage items as `BigInteger`, including their stack counts.
-- Preserves exact capacity above `Long.MAX_VALUE`. Only the original AE2 `long` accessor exposes a saturated compatibility value; exact capacity checks use the full value.
-- Rebuilds the CPU when its exact capacity changes, even if both old and new long values are saturated.
-- Rejects an ACO exact plan that exceeds the Combiner CPU's actual capacity. Busy checks, job execution, transfers, cancellation and persistence remain with AE2/ACO and the installed CPU addon.
-- Supports public exact-capacity getters from optional storage addons. Includes a targeted compatibility patch for InsaneAE 1.1.1 when present; InsaneAE and AQE are **not required**.
-- Does not add a throughput limit, duplicate ACO's API classes, enlarge the individual storage items, or introduce a new planner.
+A Forge 1.20.1 addon connecting CrazyAE crafting storage to ACO's BigInteger API. Version 0.2.1 includes an upgraded **BigInteger Crafting Units Combiner** and a dedicated creative tab.
 
-### Install
+### Features
 
-Required addon projects: [CrazyAE](https://www.curseforge.com/minecraft/mc-mods/crazyae) and [AE2 Crafting Optimizer](https://www.curseforge.com/minecraft/mc-mods/ae2-crafting-optimizer). Their own dependencies, including Applied Energistics 2, must also be installed. Use the ACO 2.0 refs.8 snapshot or a compatible build, CrazyAE 1.0, AE2 15.4.10 and Forge 47.4.18+. Install this same JAR on the server and clients. Java 17 is required.
+- Sums inserted crafting-storage capacities and item counts using BigInteger.
+- Preserves capacity above Long.MAX_VALUE and checks ACO plans against the CPU's actual capacity.
+- Displays the new Combiner's capacity in scientific notation and as a complete decimal value.
+- Provides a dedicated **BigInteger Crafting** creative tab.
+- Adds no transfer-speed limit or separate planner. Crafting execution stays with AE2, ACO and the installed CPU addon.
 
-**0.1.1 is an Alpha.** Exact arithmetic and the packaged resources have automated checks. Huge-job completion, cancellation/refunds, restart recovery and simultaneous orders have not completed in-game acceptance. A large capacity does not guarantee that every wide plan is executable by the installed ACO version. Back up worlds before testing.
+### Upgrade recipe
 
-### Build
+Place the original CrazyAE Combiner in the centre, AE2 singularities on its four sides and quartz glass in the corners.
+
+Block ID: `crazy_capacity_bridge:big_integer_combiner`
+
+Existing Combiners are not replaced automatically. Move their crafting-storage items into the new block. This addon uses the capacity of the inserted storage; it does not grant unlimited capacity.
+
+### Requirements
+
+**Required addon mods: [ACO](https://www.curseforge.com/minecraft/mc-mods/ae2-crafting-optimizer) and [CrazyAE](https://www.curseforge.com/minecraft/mc-mods/crazyae).** Install their dependencies, including AE2, as well. InsaneAE and AQE are optional.
+
+Forge 1.20.1 / Java 17. Target versions: CrazyAE 1.0, ACO 2.0 refs.8 or a compatible build, AE2 15.4.10 and Forge 47.4.18+. Install the same addon version on the server and clients.
+
+**Alpha.** The upgraded block and dedicated tab are available in 0.2.1. Version 0.1.1 provides capacity compatibility for the original Combiner and does not include these additions.
+
+## Source / Credits
+
+[Source code and issues](https://github.com/syarukasu/crazy-ae-big-crafting-capacity)
+
+Addon code: syarukasu, MIT. CrazyAE is by Beecube31 and its contributors. This is a separate addon, not a rebranding of CrazyAE. The icon renders the original CrazyAE Combiner model with CrazyAE/AE2 textures; those assets retain their original authors and licenses. Dependency binaries are not bundled.
+
+[Original CrazyAE source](https://github.com/beecupbe/crazyae/tree/1.20.1) | [Source fork](https://github.com/syarukasu/crazyae/tree/1.20.1)
+
+## Build
 
 ```powershell
 ./scripts/fetch-dependencies.ps1
 ./gradlew.bat clean test build
 ```
 
-Dependencies are downloaded from their original public distribution endpoints and checked against SHA-256. They are not redistributed in this repository or bundled into this addon. You may instead provide an installed dependency directory using `-PmodsDir=C:/path/to/mods`.
-
-The optional InsaneAE bytecode fixture test runs only when `insaneae-1.20.1-1.1.1.jar` is in that directory. Its absence skips that one fixture test, not the capacity or packaging checks.
-
-## 日本語
-
-CrazyAEの**ME Crafting Units Combiner**へ入れたクラフトストレージを、ACOのBigInteger計画で正確に扱うための互換MODです。
-
-- ストレージ1個の容量とスタック数をBigIntegerで合算します。
-- long上限を超えても正確な容量を保持します。AE2本来のlong取得口だけは互換表示値で、実際の容量判定では正確値を使用します。
-- long取得値が変わらなくても、正確な容量が変わればCPUを再構築します。
-- 実容量を超えるACOの計画を拒否します。クラフト実行・搬入出・取消・保存は既存のAE2/ACO・CPU側の処理を使います。
-- InsaneAEやAQEは任意連携です。必須アドオンは**ACOとCrazyAEの2つ**です。その2つが要求するAE2などの前提も導入してください。
-- 独自の搬入速度制限、別の計算器、ACO APIの複製は追加しません。
-
-Forge 1.20.1・Java 17向けです。サーバーとクライアントへ同じJARを導入してください。ACOは2.0 refs.8スナップショット以降の互換版を使用します。
-
-**0.1.1はAlphaです。** 容量の数値検証と配布物の確認は実施していますが、巨大注文の完了・取消返却・再起動復旧・同時注文の実機受入は未完了です。容量が大きくても、ACO側がすべての巨大計画を実行できる保証ではありません。
-
-## Credits / License
-
-Bridge code: syarukasu, MIT. CrazyAE is by Beecube31 and its contributors, not this project's author. [Original source](https://github.com/beecupbe/crazyae/tree/1.20.1), [source fork](https://github.com/syarukasu/crazyae/tree/1.20.1). AE2, ACO, InsaneAE and other addons retain their respective authors and licenses. This addon does not include their binaries.
+Dependencies are downloaded from their original public distribution endpoints and verified against SHA-256. They are not redistributed in this repository or bundled into the addon. An installed dependency directory can be supplied using `-PmodsDir=C:/path/to/mods`.
