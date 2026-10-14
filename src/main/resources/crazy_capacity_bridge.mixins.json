@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "com.syaru.crazycapacity.mixin",
+  "plugin": "com.syaru.crazycapacity.CapacityMixinPlugin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": ["CombinerMixin", "CpuCapacityMixin", "CpuCapacityHookMixin"],
+  "injectors": {"defaultRequire": 1}
+}
