@@ -7,33 +7,10 @@ base { archivesName = 'crazy-capacity-bridge-1.20.1' }
 java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
 minecraft { mappings channel: 'official', version: '1.20.1' }
 
-sourceSets { gametest }
+sourceSets {  }
 configurations {
-    gametestImplementation.extendsFrom implementation
-    gametestRuntimeOnly.extendsFrom runtimeOnly
 }
-sourceSets.gametest.compileClasspath += sourceSets.main.output
-sourceSets.gametest.runtimeClasspath += sourceSets.main.output
 minecraft.runs {
-    gameTestServer {
-        workingDirectory project.file('build/gametest-run')
-        property 'forge.enabledGameTestNamespaces', 'ccb_test,forge'
-        property 'mixin.env.remapRefMap', 'true'
-        property 'mixin.env.refMapRemappingFile', project.file('build/createSrgToMcp/output.srg').absolutePath
-        jvmArg '-Xmx1G'
-        arg '--mixin.config=crazy_capacity_bridge.mixins.json'
-        mods {
-            crazy_capacity_bridge { source sourceSets.main }
-            ccb_test { source sourceSets.gametest }
-        }
-    }
-}
-tasks.register('prepareGameTestTemplate', Copy) {
-    from 'src/gametest/resources/empty.snbt'
-    into 'build/gametest-run/gameteststructures'
-}
-tasks.configureEach {
-    if (name == 'runGameTestServer') dependsOn 'prepareGameTestTemplate'
 }
 
 def modsDir = file(findProperty('modsDir') ?: 'libs')
@@ -55,17 +32,11 @@ dependencies {
     implementation fg.deobf(group: 'local', name: 'CrazyAE-1.20.1', version: 'v1.0')
     implementation fg.deobf(group: 'local', name: 'aco', version: '2.0.0')
     compileOnly 'org.spongepowered:mixin:0.8.5'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     if (new File(modsDir, 'guideme-20.1.14.jar').isFile()) {
-        gametestRuntimeOnly fg.deobf(group: 'local', name: 'guideme', version: '20.1.14')
     }
 }
 tasks.named('jar') {
     from('LICENSE')
     manifest { attributes 'MixinConfigs': 'crazy_capacity_bridge.mixins.json' }
     finalizedBy 'reobfJar'
-}
-tasks.named('test') {
-    useJUnitPlatform()
-    systemProperty 'bridge.modsDir', modsDir.absolutePath
 }

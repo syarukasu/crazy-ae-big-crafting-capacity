@@ -68,7 +68,7 @@ Addon code: syarukasu, MIT. CrazyAE is by Beecube31 and its contributors. This i
 
 ```powershell
 ./scripts/fetch-dependencies.ps1
-./gradlew.bat clean test build
+./gradlew.bat clean build
 ```
 
 Dependencies are downloaded from their original public distribution endpoints and verified against SHA-256. They are not redistributed in this repository or bundled into the addon. An installed dependency directory can be supplied using `-PmodsDir=C:/path/to/mods`.

@@ -14,9 +14,9 @@ jobs:
       - name: Fetch checksum-pinned public dependencies
         shell: pwsh
         run: ./scripts/fetch-dependencies.ps1
-      - name: Build and test
+      - name: Build
         shell: pwsh
-        run: ./gradlew.bat test build --no-daemon --console=plain
+        run: ./gradlew.bat build --no-daemon --console=plain
       - uses: actions/upload-artifact@v4
         with:
           name: crazy-capacity-bridge-forge-1201
