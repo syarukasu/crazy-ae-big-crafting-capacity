@@ -22,6 +22,11 @@ CrazyAEのクラフトストレージを、ACOのBigInteger APIで正確に扱�
 
 ### 導入条件
 
+0.2.3では依存MODの上限を撤廃し、AE2 15.4.10、CrazyAE 1.0、InsaneAE 1.1.1、
+AQE 2.2.7、ACO 2.0.0-rc.7の各最低版以上を許可します。Minecraft・Forgeの対応範囲と
+容量連携箇所の構造検査は維持します。将来版の動作保証ではありません。
+AE2 15.4.11でコンパイル検証しています。実ゲームでの完走確認とは別です。
+
 **必須アドオンは[ACO](https://www.curseforge.com/minecraft/mc-mods/ae2-crafting-optimizer)と[CrazyAE](https://www.curseforge.com/minecraft/mc-mods/crazyae)の2つです。** それぞれが要求するAE2などの前提MODも導入してください。InsaneAE・AQEは任意です。
 
 Forge 1.20.1 / Java 17。対象構成はCrazyAE 1.0、ACO 2.0 refs.8または互換版、AE2 15.4.10、Forge 47.4.18以降です。サーバーとクライアントに同じバージョンのJARを導入してください。
@@ -49,6 +54,12 @@ Block ID: `crazy_capacity_bridge:big_integer_combiner`
 Existing Combiners are not replaced automatically. Move their crafting-storage items into the new block. This addon uses the capacity of the inserted storage; it does not grant unlimited capacity.
 
 ### Requirements
+
+0.2.3 removes dependency MOD upper bounds: AE2 15.4.10+, CrazyAE 1.0+,
+InsaneAE 1.1.1+, AQE 2.2.7+ and ACO 2.0.0-rc.7+. Minecraft/Forge platform
+ranges and structural capacity hook checks remain; future binary compatibility
+is not guaranteed.
+Compilation is checked against AE2 15.4.11; this is not gameplay acceptance.
 
 **Required addon mods: [ACO](https://www.curseforge.com/minecraft/mc-mods/ae2-crafting-optimizer) and [CrazyAE](https://www.curseforge.com/minecraft/mc-mods/crazyae).** Install their dependencies, including AE2, as well. InsaneAE and AQE are optional.
 

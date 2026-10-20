@@ -15,8 +15,8 @@ $dependencies = @(
     },
     @{
         Name = 'aco-2.0.0.jar'
-        Url = 'https://mediafilez.forgecdn.net/files/9077/511/aco2.0.0-rc.7-vm-refs.8-local_1.20.1.jar'
-        Sha256 = 'DCD10CB901E10C25BB412EC9CFDEE454925179C8005B16C42A92BFB1DD0F36E5'
+        Url = 'https://github.com/syarukasu/ae2-crafting-optimizer/releases/download/v2.0.0-rc.7-beta.1/aco2.0.0-rc.7-beta.1_1.20.1.jar'
+        Sha256 = '8EF62895EBE3328EFBA95BDC1D74430F427D696282F4075EC03F5205F4A755AB'
     }
 )
 foreach ($dependency in $dependencies) {
