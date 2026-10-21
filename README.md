@@ -60,7 +60,7 @@ Forge 1.20.1 / Java 17. Target versions: CrazyAE 1.0, ACO 2.0 refs.8 or a compat
 
 [Source code and issues](https://github.com/syarukasu/crazy-ae-big-crafting-capacity)
 
-Addon code: syarukasu, MIT. CrazyAE is by Beecube31 and its contributors. This is a separate addon, not a rebranding of CrazyAE. The icon renders the original CrazyAE Combiner model with CrazyAE/AE2 textures; those assets retain their original authors and licenses. Dependency binaries are not bundled.
+Addon code: syarukasu, LGPL-3.0-only. CrazyAE is by Beecube31 and its contributors. This is a separate addon, not a rebranding of CrazyAE. The icon renders the original CrazyAE Combiner model with CrazyAE/AE2 textures; those assets retain their original authors and licenses. Dependency binaries are not bundled.
 
 [Original CrazyAE source](https://github.com/beecupbe/crazyae/tree/1.20.1) | [Source fork](https://github.com/syarukasu/crazyae/tree/1.20.1)
 
@@ -72,3 +72,8 @@ Addon code: syarukasu, MIT. CrazyAE is by Beecube31 and its contributors. This i
 ```
 
 Dependencies are downloaded from their original public distribution endpoints and verified against SHA-256. They are not redistributed in this repository or bundled into the addon. An installed dependency directory can be supplied using `-PmodsDir=C:/path/to/mods`.
+
+## Project License
+
+Original project code and resources: `LGPL-3.0-only`. See [LICENSE](LICENSE)
+and [LICENSING.md](LICENSING.md). Third-party material retains its own terms.

@@ -36,7 +36,7 @@ dependencies {
     }
 }
 tasks.named('jar') {
-    from('LICENSE')
+    from('LICENSE', 'LICENSE-MIT', 'LICENSING.md')
     manifest { attributes 'MixinConfigs': 'crazy_capacity_bridge.mixins.json' }
     finalizedBy 'reobfJar'
 }
